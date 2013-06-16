@@ -6,6 +6,7 @@ Bundler.require
 require "./app"
 require_relative "./app/tasks/fetch_feeds"
 require_relative "./app/tasks/change_password"
+require_relative "./app/tasks/remove_old_stories"
 
 desc "Fetch all feeds."
 task :fetch_feeds do
@@ -36,6 +37,11 @@ desc "Start server and serve JavaScript test suite at /test"
 task :test_js do
   require_relative "./spec/javascript/test_controller"
   Stringer.run!
+end
+
+desc "Removes old unstarred stories that exceed predefined limit"
+task :remove_old_stories do
+  RemoveOldStories.new.remove_all
 end
 
 require 'rspec/core/rake_task'
