@@ -1,6 +1,6 @@
 class RemoveOldStories
   def initialize(limit = 9000)
-    @limit = limit
+    @limit = limit.to_i
   end
 
   def remove_all
@@ -14,6 +14,10 @@ class RemoveOldStories
       Story.
       where(is_starred: false).
       order(:published).
-      first(Story.count - @limit)
+      first(count)
+  end
+
+  def count
+    [Story.count - @limit, 0].max
   end
 end
