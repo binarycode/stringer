@@ -40,8 +40,8 @@ task :test_js do
 end
 
 desc "Removes old unstarred stories that exceed predefined limit"
-task :remove_old_stories do
-  RemoveOldStories.new.remove_all
+task :remove_old_stories, :limit do
+  RemoveOldStories.new(args[:limit]).remove_all
 end
 
 require 'rspec/core/rake_task'
