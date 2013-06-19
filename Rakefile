@@ -40,7 +40,7 @@ task :test_js do
 end
 
 desc "Removes old unstarred stories that exceed predefined limit"
-task :remove_old_stories, :limit do
+task :remove_old_stories, :limit do |_, args|
   RemoveOldStories.new(args[:limit]).remove_all
 end
 
